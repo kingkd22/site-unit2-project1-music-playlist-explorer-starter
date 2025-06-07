@@ -18,6 +18,38 @@ header {
     font-weight: bold;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    flex-wrap: wrap;
+}
+
+.navbar a:hover {
+    color: #0077cc;
+}
+
+.pageLinks {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin 0;
+    padding: 0;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    pageLinks {
+        flex-direction: column:columngap: 10px;
+        width: 100%;
+    }
+}
+
 .playlist-cards {
     padding: 40px;
     display: flex;
@@ -29,25 +61,27 @@ header {
 }
 
 .playlistcard {
-    padding-left: 10px;
     max-width: 30%;
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
     background-color: aliceblue;
+    overflow: hidden;
 }
 
 .playlistcard:hover {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-bottom: 1px solid #f0f0f0;
-    background-color: aliceblue;
-    border-radius: 12px;
     cursor: pointer;
+    transform: translateY(-15px);
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.15)
 }
 
+.playlistcard img {
+    object-fit: cover;
+    border-bottom: 1px solid #f0f0f0;
+    object-position: center;
+}
 .playlistTitle {
+    padding-left: 10px;
     padding-bottom: 5px;
     font-size: 16px;
     font-weight: 600;
@@ -56,6 +90,7 @@ header {
 }
 
 .creatorName {
+    padding-left: 10px;
     font-size: 14px;
     margin: 0 16px 8px;
     margin-left: 5px;
@@ -65,10 +100,14 @@ header {
     font-size: 20px;
     margin-right: 4px;
     margin-bottom: 10px;
+    padding-left: 10px;
 }
+
+
 
 /* CSS for Modal */
 .modal {
+    position:fixed;
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -90,6 +129,7 @@ header {
     align-items: center;
     gap: 20px;
     margin-bottom: 24px;
+    
 }
 
 #playlistImage {
@@ -143,11 +183,11 @@ header {
     display: block;
 }
 
-/* .songs {
-    /* display: flex;
+.songs {
+    display: flex;
     flex-direction: column;
     gap: 12px
-} */
+}
 
 .shuffle {
     background-color: #6200ea;
@@ -159,11 +199,6 @@ header {
     margin: 10px auto;
     display: block;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.shuffle:hover {
-    background-color: #3700b3;
 }
 .song {
     display: flex;
@@ -204,4 +239,118 @@ header {
 .song-duration {
     font-size: 14px;
     color: #888;
-} */
+}
+
+
+.featuredPlaylist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: aliceblue;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.featured {
+    flex: 1 1 48%;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    text-align: center;
+    width: 45%;
+}
+
+.featuredImg img {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 10px;
+    object-fit: cover;
+    float: right;
+}
+
+.featuredTitle,
+.featuredName {
+    margin: 10px 0 5px;
+}
+
+.likes {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-top: 10px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+.featuredSongs {
+    flex: 1 1 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.song {
+    display: flex;
+    gap: 15px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 10px;
+    align-items: center;
+}
+
+.song img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.song-description {
+    flex-grow: 1;
+}
+
+#songName {
+    font-weight: bold;
+}
+
+#albumName,
+#songArtist,
+#songDuration {
+    font-size: 0.9em;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .featuredPlaylist {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .featuredSongs {
+        width: 100%
+    }
+
+    .song {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .song img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .song-description {
+        width: 100%;
+    }
+}

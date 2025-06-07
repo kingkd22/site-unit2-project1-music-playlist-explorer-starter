@@ -4,22 +4,22 @@ document.addEventListener("DOMContentLoaded", () => {
     playlistCards.innerHTML = '';
 
     playlists.forEach(item =>{
+        console.log('insight for each playlist')
+        console.log(item)
         playlistCards.innerHTML += `
         <article class="playlistcard" data-id="${item.playlistId}">
-            <img src="${item.playlistImage}" alt="playlist" width="100%">
+            <div class="playlistImg" data-id=${item.playlistId}>
+                <img src="${item.playlistImage}" alt="playlist" width="100%">
+            </div>
             <h3 class="playlistTitle">${item.playlistTitle}</h3>
             <p class="creatorName">${item.playlistCreator}</p>
-            <p class="likes">
-            <i class="fas fa-heart heart-icon" style="color: lightgrey;" data-id="${item.playlistId}></i>
-            ${item.playlistLikeCount}
-            </p>
+            <button class="likes" data-id="${item.playlistId}"><i class="fas fa-heart"></i><span class="like-count">${item.playlistLikeCount}</span></button>
         </article>
         `
     })
 
 
-    document.querySelectorAll('.playlistcard').forEach(card => {
-        
+    document.querySelectorAll('.playlistImg').forEach(card => {
         card.addEventListener('click', () => {
             console.log('data set idea' + parseInt(card.dataset.id))
             const id = parseInt(card.dataset.id);
@@ -32,7 +32,45 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
     })
+
+    document.addEventListener("click", (e) => {
+        if (e.target.closest(".likes")) {
+            const button = e.target.closest(".likes");
+            const countSpan = button.querySelector(".like-count");
+            let count = parseInt(countSpan.textContent);
+
+            if (button.classList.contains("liked")) {
+                count--;
+                button.classList.remove("liked")
+                button.style.color="grey";
+            }   else {
+                count ++;
+                button.classList.add("liked");
+                button.style.color = "red"
+            }
+            countSpan.textContent = count;
+        }
+    })
 })
+// function likeButton(playlists) {
+    
+//     const playlist = playlists.playlistId;
+//     const likeCountSpan = heart.nextElementSibling;
+//     const isLiked = likedPlaylists[playlist.playlistId];
+
+//     if (isLiked) {
+//         playlist.playlistLikeCount -= 1;
+//         heart.style.color = "lightgrey";
+//         heart.classList.remove("liked")
+//     }   else {
+//         playlist.playlistLikeCount += 1;
+//         heart.style.color = "red";
+//         heart.classList.add("liked");
+//     }
+//     likeCountSpan.textContent = playlist.playlistLikeCount
+        
+// }
+            
     // document.addEventListener('click', (e) => {
     //     if (e.target.classList.contains("heart-icon")) {
     //         const id = parseInt(e.target.dataset.id)
@@ -97,24 +135,36 @@ document.addEventListener("DOMContentLoaded", () => {
 function modalFill(data) {
     const modalContent = document.querySelector('.modalContent')
     modalContent.innerHTML = `
+    <span class="close">&times;</span>
+    <section class="modal-header">
+        <img id="playlistImage" src="${data.playlistImage}" alt="Playlist Cover" width="200px">
+        <article class="playlist_details">
+            <h2 id="playlistName">${data.playlistTitle}</h2>
+            <p id="playlistCreator">${data.playlistCreator}</p>
+        </article>
 
         
-        <button class="shuffle" data-id="${data.playlistId}> Shuffle </button>
-
-        `
+        <button class="shuffle"> Shuffle </button>
+    </section>
+    <section class="songs">
+        ${renderSongs(data.playlistSongs)}
+    </section>
+    </section>
+    `;
+        
 
     const shuffle = modalContent.querySelector(".shuffle")
-    // shuffle.addEventListener("click", () => {
-    //     const playlist = playlists.find(p => p.playlistId === data.playlistId);
-    //     if (!playlist) return;
+    shuffle.addEventListener("click", () => {
+        const playlist = playlists.find(p => p.playlistId === data.playlistId);
+        if (!playlist) return;
 
-    //     for (let i = playlist.playlistSongs.length - 1; i > 0; i--) {
-    //         const j = Math.floor(Math.random() * (i + 1));
-    //         [playlist.playlistSongs[i], playlist.playlistSongs[j]] = [playlist.playlistSongs[j], playlist.playlistSongs[i]];
-    //     }
-    //     const songSection = modalContent.querySelector(".songs");
-    //     songSection.innerHTML = renderSongs(playlist.playlistSongs);egtnctfbkcgdlekgtvnnhlckliuniunkfgijjnllvndbgjfvljbntvvkvlvgndfffivigettjkecnbueeiurffdfrijbrngh
-    // })
+        for (let i = playlist.playlistSongs.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [playlist.playlistSongs[i], playlist.playlistSongs[j]] = [playlist.playlistSongs[j], playlist.playlistSongs[i]];
+        }
+        const songSection = modalContent.querySelector(".songs");
+        songSection.innerHTML = renderSongs(playlist.playlistSongs);
+    })
 
     const modal = document.querySelector(".modal");
     modalContent.addEventListener('click', (e) => {
