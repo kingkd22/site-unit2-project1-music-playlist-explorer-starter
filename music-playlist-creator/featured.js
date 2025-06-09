@@ -51,33 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     getRandomFeature(playlists)
 })
-    
-    
-    // }
-    // const randomPlaylist = getRandomFeature(playlists)
-
-    
-//     featured = document.querySelector(".featuredPlaylist")
-//     featured.innerHTML = ''
-
-//     featured.innerHTML += `
-//     <article class="featured" data-id="${randomPlaylist.playlistId}">
-//         <div class="featuredImg" data-id=${randomPlaylist.playlistId}>
-//             <img src="${randomPlaylist.playlistImage}" alt="playlist" width="100%">
-//         </div>
-//         <h3 class="featuredTitle">${randomPlaylist.playlistTitle}</h3>
-//         <p class="featuredName">${randomPlaylist.playlistCreator}</p>
-//         <button class="likes" data-id="${randomPlaylist.playlistId}"><i class="fas fa-heart"></i><span class="like-count">${randomPlaylist.playlistLikeCount}</span></button>
-//     </article>`
-//     console.log("Random:", randomPlaylist);
-//     if (randomPlaylist.playlistSongs && Array.isArray(randomPlaylist.playlistSongs)) {
-//         featured.innerHTML += `
-//         <article class="featuredSongs">
-//             ${renderSongs(randomPlaylist.playlistSongs)}
-//         </article>`
-//     }
-    
-// })
 
 
 function renderSongs(songs) {
