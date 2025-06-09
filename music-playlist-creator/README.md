@@ -130,10 +130,7 @@ Deployed Application (Render): [Music Playlist Explorer Deployed Site](https://s
 
 ### Walkthrough Video
 
-`<a href="https://www.loom.com/share/f06e015426ee49418720909bec4ba108?sid=221ff9e7-1f66-4b62-aed7-6fbf0046c5fd">
-   <p>Kingston Davies Music Playlist</p>
-   <img style="max-width:300px;" src="https://www.loom.com/share/f06e015426ee49418720909bec4ba108?sid=221ff9e7-1f66-4b62-aed7-6fbf0046c5fd">
-</a>`
+https://www.loom.com/share/f06e015426ee49418720909bec4ba108?sid=221ff9e7-1f66-4b62-aed7-6fbf0046c5fd
 
 ### Reflection
 
